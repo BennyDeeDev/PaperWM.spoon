@@ -300,7 +300,7 @@ function MissionControl:focusSpace(space_id, window)
 
     local start_time = Timer.secondsSinceEpoch()
     Timer.doUntil(do_window_focus, function(timer)
-        if Timer.secondsSinceEpoch() - start_time > 1 then timer:stop() end
+        if Timer.secondsSinceEpoch() - start_time > MissionControl.PaperWM.space_switch_timeout then timer:stop() end
     end, Window.animationDuration)
 
     if MissionControl.PaperWM and MissionControl.PaperWM.center_mouse then

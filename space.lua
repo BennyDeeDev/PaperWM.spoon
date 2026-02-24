@@ -127,7 +127,7 @@ function Space.moveWindowToSpace(index)
 
         local start_time = Timer.secondsSinceEpoch()
         Timer.doUntil(do_add_window, function(timer)
-            if Timer.secondsSinceEpoch() - start_time > 1 then timer:stop() end
+            if Timer.secondsSinceEpoch() - start_time > Space.PaperWM.window_move_timeout then timer:stop() end
         end, Window.animationDuration)
     end
 end

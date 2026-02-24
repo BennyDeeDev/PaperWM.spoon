@@ -88,4 +88,10 @@ Config.scroll_gain = 10 ---@type number
 ---center mouse cursor on screen after switching spaces
 Config.center_mouse = true ---@type boolean
 
+---seconds to keep retrying window focus after a space switch
+Config.space_switch_timeout = 2 ---@type number
+
+---seconds to wait for a window to appear on its target space after a move
+Config.window_move_timeout = 2 ---@type number
+
 return Config
