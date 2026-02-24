@@ -298,8 +298,13 @@ function MissionControl:focusSpace(space_id, window)
         return true -- done
     end)
 
+    if MissionControl._focus_timer then
+        MissionControl._focus_timer:stop()
+        MissionControl._focus_timer = nil
+    end
+
     local start_time = Timer.secondsSinceEpoch()
-    Timer.doUntil(do_window_focus, function(timer)
+    MissionControl._focus_timer = Timer.doUntil(do_window_focus, function(timer)
         if Timer.secondsSinceEpoch() - start_time > MissionControl.PaperWM.space_switch_timeout then timer:stop() end
     end, Window.animationDuration)
 
