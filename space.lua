@@ -24,8 +24,12 @@ function Space.switchToSpace(index)
         return
     end
 
-    local screen = Screen(Spaces.spaceDisplay(space))
-    local window = Space.PaperWM.windows.getFirstVisibleWindow(space, screen:frame())
+    local saved_id = Space.PaperWM.state.focused_window_per_space[space]
+    local window = saved_id and Window.get(saved_id)
+    if not window then
+        local screen = Screen(Spaces.spaceDisplay(space))
+        window = Space.PaperWM.windows.getFirstVisibleWindow(space, screen:frame())
+    end
     Space.MissionControl:focusSpace(space, window)
 end
 

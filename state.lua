@@ -12,6 +12,7 @@ local x_positions = {} -- dictionary of horizontal positions with [space][id] fo
 State.is_floating = {} -- dictionary of boolean with window id for keys
 State.prev_focused_window = nil ---@type Window|nil
 State.pending_window = nil ---@type Window|nil
+State.focused_window_per_space = {} -- dictionary of window id with space id for keys
 
 ---initialize module with reference to PaperWM
 ---@param paperwm PaperWM
@@ -29,6 +30,7 @@ function State.clear()
     State.is_floating = {}
     State.prev_focused_window = nil
     State.pending_window = nil
+    State.focused_window_per_space = {}
 end
 
 ---walk through all tiled windows in a space and update the index table

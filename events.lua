@@ -82,6 +82,10 @@ function Events.windowEventHandler(window, event, self)
             return
         end
         self.state.prev_focused_window = window -- for addWindow()
+        local current_space = Spaces.focusedSpace()
+        if current_space then
+            self.state.focused_window_per_space[current_space] = window:id()
+        end
         space = Spaces.windowSpaces(window)[1]
     elseif event == "windowVisible" or event == "windowUnfullscreened" then
         space = self.windows.addWindow(window)
